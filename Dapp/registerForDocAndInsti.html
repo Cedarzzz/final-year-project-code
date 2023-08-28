@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Register - InfectiousDataSystem</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/cardiogram.ico" />
+        <!-- Bootstrap Icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- SimpleLightbox plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/Bootstrap.css" rel="stylesheet" />
+        <style>
+            #mainNav {
+            background-color: #1c1c1c;
+            }
+
+            /* 导航链接文字颜色 */
+            #mainNav .nav-link {
+            color: #fff !important;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 1rem;
+            transition: all 0.3s ease;
+            }
+
+            /* 鼠标悬浮链接文字颜色 */
+            #mainNav .nav-link:hover {
+            color: #f4623a !important;
+            background-color: #333;
+            }
+
+            /* 导航栏品牌文字颜色 */
+            #mainNav .navbar-brand {
+            color: #fff !important;
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            }
+
+            /* 鼠标悬浮品牌文字颜色 */
+            #mainNav .navbar-brand:hover {
+            color: #f4623a !important;
+            }
+
+            /* Active class 文字颜色 */
+            #mainNav .nav-link.active {
+            color: #f4623a !important;
+            }
+
+            /* 缩小后的导航栏样式 */
+            #mainNav.navbar-shrink {
+            background-color: #333;
+            transition: all 0.3s ease;
+            }
+
+            #mainNav.navbar-shrink .nav-link {
+            color: #fff !important;
+            }
+
+            #mainNav.navbar-shrink .navbar-brand {
+            color: #fff !important;
+            }
+
+            #mainNav.navbar-shrink .nav-link.active {
+            color: #f4623a !important;
+            }
+
+            /* 按钮样式 */
+            .navbar-toggler {
+            border-color: #fff;
+            }
+
+            .navbar-toggler-icon {
+            background-color: #fff;
+            }
+
+            /* 重置下拉菜单样式 */
+            .navbar-nav .dropdown-menu {
+            background-color: #1c1c1c;
+            border-color: #f4623a;
+            }
+
+            .navbar-nav .dropdown-item {
+            color: #fff !important;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            }
+
+            .navbar-nav .dropdown-item:hover {
+            color: #f4623a !important;
+            background-color: #333;
+            }       
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">InfectiousDataSystem</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="./index.html">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./register.html">Register</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Others
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">About</a></li>
+                                <li><a class="dropdown-item" href="./registerForDocAndInsti.html">Institution Role Register</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Registration Content -->
+        <section class="bg-light py-4" style="margin-top: 200px;">
+            <div class="container">
+                <h2 class="text-center">Register</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-7">
+                        <form id="registrationForm" onsubmit="return registerFunc()">
+                            <!-- User Type Selection -->
+                            <div class="mb-3">
+                                <label for="registerType" class="form-label">Register as:</label>
+                                <select class="form-select" id="registerType" required>
+                                    <option value="" disabled selected>Select User Type</option>
+                                    <!-- <option value="0">Patient</option> -->
+                                    <option value="1">Docter</option>
+                                    <option value="2">Institution</option>
+                                </select>
+                            </div>
+
+                            <!-- Name Input -->
+                            <div class="mb-3">
+                                <label for="userName" class="form-label">Name:</label>
+                                <input type="text" class="form-control" id="userName" required>
+                            </div>
+
+                            <!-- Contact Number Input -->
+                            <div class="mb-3">
+                                <label for="contactNumber" class="form-label">Contact Number:</label>
+                                <input type="text" class="form-control" id="contactNumber" required>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn-lg">Register</button>
+                            <div class="alert alert-success mt-2" style="display: none;">
+                                This account has already registered, please login.
+                              </div> 
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+        <script src="https://unpkg.com/ipfs-api/dist/index.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+        <script src="app.js"></script>
+        
+        <script>
+        //const CryptoJS = require('crypto-js');
+        web3 = new Web3(web3.currentProvider);
+        resolve(); // Connection successful, resolve the promise
+        window.ethereum.enable();
+
+           async function registerFunc() {
+            event.preventDefault();
+
+            console.log("registerFunc started.");
+            try {
+                const registerType = parseInt($("#registerType").val(), 10);
+                console.log("registerType:", registerType);
+
+                const userName = $("#userName").val();
+                console.log("userName:", userName);
+
+                const contactNumber = $("#contactNumber").val();
+                console.log("contactNumber:", contactNumber);
+                const patientPublicKey = await createPatientAccount();
+                const myPublicKey = web3.currentProvider.selectedAddress;
+                const normalizedPublicKey = myPublicKey.toLowerCase();
+
+                
+                console.log("normalizedPublicKey:", normalizedPublicKey);
+
+                if (!normalizedPublicKey) {
+                    $(".alert-success").text("Invalid public key!").show();
+                    return false;
+                }
+
+                const [patientList, doctorList, institutionList, adminList] = await Promise.all([
+                    infecDisInfoContract.methods.getPatientList().call(),
+                    infecDisInfoContract.methods.getDocterList().call(), // Assuming getDocterList is a typo and should be getDoctorList.
+                    infecDisInfoContract.methods.getInstitutionList().call(),
+                    infecDisInfoContract.methods.getAdminsList().call()
+                ]);
+                console.log("patientList:" + patientList);
+                console.log("doctorList:"+ doctorList);
+                console.log("institutionList:", institutionList);
+
+                const normalizedPatientList = patientList.map(addr => addr.toLowerCase());
+                const normalizedDoctorList = doctorList.map(addr => addr.toLowerCase());
+                const normalizedInstitutionList = institutionList.map(addr => addr.toLowerCase());  // Normalize new list
+                const normalizedAdminList = adminList.map(addr => addr.toLowerCase());
+
+                const isValidAgent = ![...normalizedPatientList, ...normalizedDoctorList, ...normalizedInstitutionList, ...normalizedAdminList].includes(normalizedPublicKey);
+
+                if (!isValidAgent) {
+                    console.log("This account already exists!");
+                    $(".alert-success").show();
+                    return false;
+                }
+                const ipfs = window.IpfsApi('localhost', '5001');
+                const Buffer = window.IpfsApi().Buffer;
+                let ipfsHash = "";
+                let encryptKey = "";
+                let encryptedName = "";
+                //let encryptedContactNumber = "";
+                if (registerType === 0) {
+                    //使用对称加密，加密name和contactNumber
+                    encryptKey = generateRandomKey();
+                    console.log("encryptKey:", encryptKey);
+                    encryptedName = encryptData(userName, encryptKey);
+                    console.log("encryptedName:", encryptedName);
+                    //encryptedContactNumber = encryptData(contactNumber, encryptKey);
+                    await infecDisInfoContract.methods.storeKey(normalizedPublicKey, encryptKey).send({ from: normalizedPublicKey, gas: 2000000 });
+                }
+                else {
+                    encryptedName = userName;
+                }
+                await infecDisInfoContract.methods.register(encryptedName, contactNumber, registerType, ipfsHash).send({ from: normalizedPublicKey, gas: 2000000 });
+
+                switch (registerType) {
+                    case 0:
+                        location.replace("./patient.html");
+                        break;
+                    case 1:
+                        location.replace("./docter.html");
+                        break;
+                    case 2:  // Assuming registerType value for institution is 2
+                        location.replace("./institution.html");
+                        break;
+                    default:
+                        location.replace("./index.html");
+                }
+
+            } catch (error) {
+                console.error("An error occurred:", error.message);
+                $(".alert-success").text(`Failed due to: ${error.message}`).show(); 
+            }
+
+            return false;
+        }
+        function encryptData(data, secretKey) {
+            return CryptoJS.AES.encrypt(data, secretKey).toString();
+        }
+
+        function decryptData(ciphertext, secretKey) {
+            const bytes = CryptoJS.AES.decrypt(ciphertext, secretKey);
+            return bytes.toString(CryptoJS.enc.Utf8);
+        }
+        function generateRandomKey(byteLength = 32) {
+            const randomData = CryptoJS.lib.WordArray.random(byteLength);
+            return randomData.toString(CryptoJS.enc.Hex);
+        }
+        async function createPatientAccount() {
+            try {
+                const newAccount = await web3.eth.accounts.create();
+                console.log('New account address:', newAccount);
+                const amountInWei = web3.utils.toWei('0.001', 'ether');
+                const txHash = await ethereum.request({
+                  method: 'eth_sendTransaction',
+                  params: [{
+                      from: ethereum.selectedAddress, 
+                      to: newAccount.address,
+                      value: amountInWei,
+                  }],
+              });
+                //return newAccount;
+            } catch (error) {
+                console.error('Error creating account:', error);
+            }
+        }
+        </script>
+    </body>
+</html>

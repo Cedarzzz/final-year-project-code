@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+library InfoLib {
+    struct Patient {
+        string name;
+        uint contactNum;
+        address[] docAccessList;
+        string[] infecRecords;
+    }
+
+    struct Docter {
+        string name;
+        uint contactNum;
+        address[] userAccessList;
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "server": {
+      "baseDir": "Dapp",
+      "routes": {
+        "/app.js": "Dapp/app.js"
+      }
+    },
+    "proxy": false,
+    "port": 8888
+  }
+  

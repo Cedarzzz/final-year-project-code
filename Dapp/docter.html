@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Docter Page</title>
+  
+  <!-- Imports Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <!-- Imports the CSS styles -->
+  <style>
+    .list-group-item:hover {
+          background-color: rgba(0, 123, 255, 0.1);
+      }
+
+      /* Additional spacing below navbar */
+      body {
+          padding-top: 70px;
+      }
+      .small-image {
+    max-width: 120px;
+    max-height: 120px;
+    }
+  </style>
+</head>
+
+<body data-spy="scroll" data-target=".list-group">
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <a class="navbar-brand" href="#">Docter Portal</a>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- Sidebar -->
+      <div class="col-md-3">
+        <div class="list-group mt-3">
+            <a href="#profileSection" class="list-group-item list-group-item-action">My Profile</a>
+            <a href="#addRecordsSection" class="list-group-item list-group-item-action">Add Record</a>
+            <a href="#sharedWithSection" class="list-group-item list-group-item-action">Shared With</a>
+            <a href="#recordsSection" class="list-group-item list-group-item-action">Records</a>
+            <a href="#" class="list-group-item list-group-item-action" onclick="logout()">Logout</a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <main class="col-md-9 ml-sm-auto px-4">
+
+        <!-- Page Heading -->
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" id="profileSection">
+          <h1 class="h2">My Profile</h1>
+        </div>
+        
+        <!-- Profile Info -->
+        <div class="my-3 p-3 bg-white rounded shadow-sm" >
+          <h6 class="border-bottom border-gray pb-2 mb-0">Docter Profile Information</h6>
+          
+          <div class="media pt-3">
+            <img src="../pic/head.jpg" class="mr-3 rounded-circle small-image">
+            <div class="media-body">
+              <h5 class="mt-0" id="name">John Doe</h5>
+              <p class="text-muted mb-0" id="contactNumber">133</p>
+            </div>
+          </div>
+<!-- 
+          <div class="media pt-3">
+            <div class="media-body">
+              <h5 class="mt-0 mb-1">Medical Records Hash:</h5>
+              <p class="text-muted mb-0" id="recordsFileHash">0x123abc...</p>
+            </div>
+          </div> -->
+
+        </div>
+
+        <!-- Add Records -->
+        <div class="my-3 p-3 bg-white rounded shadow-sm" id="addRecordsSection">
+          <h6 class="border-bottom border-gray pb-2 mb-0">Add Records</h6>
+          <div class="media pt-3">
+            <div class="media-body">
+                <label for="selectPatient">Select Patient</label>
+                <select class="form-control mb-3" id="selectPatient">
+                    <option>Select a Patient</option>
+                    <!-- Options populated from the blockchain will be added here -->
+                </select>
+                
+                <label for="gender">Gender</label>
+              <select class="form-control mb-3" id="gender">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="transgender">Transgender</option>
+              </select>
+
+              <label for="age">Age</label>
+              <input type="number" class="form-control mb-3" id="age" placeholder="Enter age">
+
+              <label for="ethnicity">Ethnicity</label>
+              <input type="text" class="form-control mb-3" id="ethnicity" placeholder="Enter ethnicity">
+
+              <label for="diseaseType">Disease Type</label>
+              <select class="form-control mb-3" id="diseaseType">
+                  <option value="h1n1">H1N1</option>
+                  <option value="hiv">HIV</option>
+                  <option value="sars">SARS</option>
+                  <option value="mers">MERS</option>
+                  <option value="zika">Zika</option>
+                  <option value="ebola">Ebola</option>
+                  <option value="covid19">COVID-19</option>
+                  <option value="flu">Flu</option>
+                  <option value="tuberculosis">Tuberculosis</option>
+                  <option value="hemorrhagicFever">Hemorrhagic Fever</option>
+                  <option value="cholera">Cholera</option>
+                  <option value="dengue">Dengue</option>
+                  <option value="other">other</option>
+              </select>
+
+              <label for="symptoms">Symptoms</label>
+              <input type="text" class="form-control mb-3" id="symptoms" placeholder="Enter symptoms">
+
+              <label for="hospitalized">Hospitalized</label>
+              <select class="form-control mb-3" id="hospitalized">
+                  <option value="no">No</option>
+                  <option value="yes">Yes</option>
+              </select>
+
+              <label for="deceased">Deceased</label>
+              <select class="form-control mb-3" id="deceased">
+                  <option value="no">No</option>
+                  <option value="yes">Yes</option>
+              </select>
+
+              <label for="treatmentType">Treatment Type</label>
+              <select class="form-control mb-3" id="treatmentType">
+                  <option value="none">None</option>
+                  <option value="antipyretics">Antipyretics</option>
+                  <option value="antibiotics">Antibiotics</option>
+                  <option value="immunotherapy">Immunotherapy</option>
+                  <option value="antiviral">Antiviral Therapy</option>
+                  <option value="chemotherapy">Chemotherapy</option>
+                  <option value="surgery">Surgery</option>
+              </select>
+
+              <label for="vaccinationStatus">Vaccination Status</label>
+              <select class="form-control mb-3" id="vaccinationStatus">
+                  <option value="none">None</option>
+                  <option value="firstDose">First Dose</option>
+                  <option value="secondDose">Second Dose</option>
+                  <option value="thirdDose">Third Dose</option>
+              </select>
+                <!-- <label for="condition">Condition</label>
+                <textarea class="form-control mb-3" id="condition" placeholder="Describe the patient's condition"></textarea>
+    
+                <label for="prescription">Prescription</label>
+                <textarea class="form-control mb-3" id="prescription" placeholder="Provide the prescription details"></textarea> -->
+    
+                <button class="btn btn-primary mt-3" onclick="addRecordToIPFS()">Add Record</button> 
+                <div class="alert alert-success mt-2" style="display: none;">
+                    Record added successfully, please refresh the page.
+                </div>
+            </div>
+        </div>
+          
+        </div>
+
+        <!-- Shared With -->
+        <div class="my-3 p-3 bg-white rounded shadow-sm" id="sharedWithSection">
+          <h6 class="border-bottom border-gray pb-2 mb-0">Shared With</h6>
+          
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>contact Number</th>
+                <th>Address</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="accessDoc">
+              <tr>
+                <td>Dr. Amy</td>
+                <td class="docterPublicKey">0xabc123...</td>
+                <td><button class="btn btn-info"  onclick="showRecords(this)">View Records</button></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <!-- Records -->
+        <div class="my-3 p-3 bg-white rounded shadow-sm" id="recordsSection">
+          <h6 class="border-bottom border-gray pb-2 mb-0">Records</h6>
+
+          <!-- <button class="btn btn-info" onclick="showRecords(this)">View Records</button> -->
+
+          <div id="records"></div>
+
+        </div>
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+          <button class="btn btn-info" onclick="createPatientAccount()">Create Patient Account</button>
+        </div>
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+          <button class="btn btn-danger" onclick="deleteAccount()">Delete Account</button>
+        </div>
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <button class="btn btn-danger" onclick="logout()">Logout</button>
+          </div>
+        
+      </main>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.x/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/ipfs-api/dist/index.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="app.js"></script>
+    <script>
+    // Global variables
+    let showRecordsButton = 0;
+    var recordsFileHash;
+    var docterName;
+    function web3ConnectPromise() {
+    return new Promise((resolve, reject) => {
+        // Connect to the Ethereum blockchain using web3
+        // Replace the following code with your actual web3 connection logic
+
+        // Assuming web3 is a global object, if not, you need to import web3 library first.
+        if (typeof web3 !== "undefined") {
+          web3 = new Web3(web3.currentProvider);
+          resolve(); // Connection successful, resolve the promise
+          window.ethereum.enable();
+        
+        } else {
+          reject(new Error("Web3 not available")); // Connection failed, reject the promise
+        }
+    });
+    }
+
+
+    web3ConnectPromise().then(function() {
+        // Call the functions to load data and update the HTML page
+        setTimeout(async function() {
+        rawPublicKey = web3.currentProvider.selectedAddress;
+        //console.log(rawPublicKey);
+
+        await loadProfileData();
+        await loadPatientList();
+        await loadSharedWithList();
+    }, 500);
+    });
+
+
+    async function loadProfileData() {
+        // Use web3 to call smart contract functions and get the data
+        const docterInfo = await infecDisInfoContract.methods.getDocterInfo(rawPublicKey).call();
+        const name = docterInfo[0];
+        docterName = name;
+        const contactNumber = docterInfo[1];
+        //recordsFileHash = patientInfo[2];
+
+        // Update the corresponding HTML elements with the retrieved data
+        $("#name").html(name);
+        $("#contactNumber").html(contactNumber);
+        //$("#recordsFileHash").html(recordsFileHash);
+    }
+    async function getSecretKey(rawPublicKey, destinationAddr) {
+        const secretKey = await infecDisInfoContract.methods.retrieveKey(rawPublicKey, destinationAddr).call();
+        //console.log("secretKey:" + secretKey);
+        return secretKey;
+    }
+    async function loadSharedWithList() {
+        // Use web3 to call smart contract functions and get the list of docter with access
+        const userAccessListAddr = await infecDisInfoContract.methods.docterAccessPermitCheck(rawPublicKey).call();
+        console.log("userAccessListAddr:"+userAccessListAddr);
+
+        // Update the table with the docter who have access
+        const accessUserTable = $("#accessDoc");
+        accessUserTable.empty(); // Clear the existing table rows
+
+        userAccessListAddr.forEach(async function(patientAddress) {
+            const patientInfo = await infecDisInfoContract.methods.getPatientInfo(patientAddress).call();
+            const encryptName = patientInfo[0];
+            const secretKey = await getSecretKey(rawPublicKey, patientAddress);
+            const name = decryptData(encryptName, secretKey);
+            const contactNumber = patientInfo[1];
+            //console.log("secretKey:" + secretKey);
+            // Create a new row and add it to the table
+            const newRow = $("<tr>");
+            newRow.data('patientAddress', patientAddress);
+            newRow.data('patientFileHash', patientInfo[2]);
+
+            newRow.append($("<td>").text(name));
+            newRow.append($("<td>").text(contactNumber));
+            newRow.append($("<td>").text(patientAddress));
+            newRow.append($("<td>").html('<button class="btn btn-info" onclick="showRecords(this)">View Records</button>'));
+              accessUserTable.append(newRow);
+        });
+    }
+    function decryptData(ciphertext, secretKey) {
+        const bytes = CryptoJS.AES.decrypt(ciphertext, secretKey);
+        console.log("bytes:" + bytes);
+        return bytes.toString(CryptoJS.enc.Utf8);
+    }
+    async function showRecords(element) {
+        if (showRecordsButton % 2 === 0) {
+            try {
+            const patientFileHash = $(element).closest('tr').data('patientFileHash');
+
+            // 使用 await 获取记录数据，确保数据获取成功后再进行显示
+            const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+            const response = await fetch("http://localhost:8080/ipfs/" + patientFileHash);
+            //console.log("recordsFileHash:" + patientFileHash);
+            if (!response.ok) {
+                throw new Error("Failed to fetch medical records");
+            }
+            const recordData = await response.text();
+            const records = JSON.parse(recordData);
+
+            const headers = ["gender", "age", "ethnicity", "diseaseType", "symptoms", "hospitalized", "deceased", "treatmentType", "vaccinationStatus", "addByDocter"];
+            let tableHTML = "<table class='table table-bordered'>";
+            tableHTML += "<thead><tr>";
+            headers.forEach(header => {
+              tableHTML += `<th>${header}</th>`;
+            });
+            tableHTML += "</tr></thead><tbody>";
+            records.forEach(record => {
+              tableHTML += "<tr>";
+              headers.forEach(header => {
+                tableHTML += `<td>${record[header]}</td>`;
+              });
+              tableHTML += "</tr>";
+            });
+            tableHTML += "</tbody></table>";
+            // 显示表格
+            $("#records").html(tableHTML).show();            
+
+            // // 将获取的记录数据显示在页面上
+            // $("#records").html(recordData);
+            // $("#records").show();
+
+            // 切换按钮文本和样式
+            element.innerHTML = "Hide Records";
+            element.className = "btn btn-info";
+
+            showRecordsButton += 1;
+            } catch (error) {
+            console.error(error);
+            }
+        } else {
+            // 隐藏记录
+            $("#records").hide();
+
+            // 切换按钮文本和样式
+            element.innerHTML = "View Records";
+            element.className = "btn btn-info";
+
+            showRecordsButton -= 1;
+        }
+    }
+    async function loadPatientList() {
+        //const patientList = await infecDisInfoContract.methods.getPatientList().call();
+        const patientList = await infecDisInfoContract.methods.docterAccessPermitCheck(rawPublicKey).call();
+        
+        const permitPatientList = $("#selectPatient");
+        permitPatientList.empty(); // Clear the existing options
+        permitPatientList.append($("<option>").text("Select a Patient")); // Add default option
+
+          patientList.forEach(async function(patientAddress) {
+          const patientInfo = await infecDisInfoContract.methods.getPatientInfo(patientAddress).call();
+          const encryptName = patientInfo[0];
+          const secretKey = await getSecretKey(rawPublicKey, patientAddress);
+          const name = decryptData(encryptName, secretKey);
+          const address = patientAddress;
+
+          permitPatientList.append($("<option>").val(address).text(name + " : " + address));
+          //option.val(patientAddress);
+          //permitPatientList.append(option);
+      });
+    }
+
+    async function addRecordToIPFS() {
+      // Get data from the input fields
+      const patientAddress = $("#selectPatient").val();
+      const gender = $("#gender").val();
+      const age = $("#age").val();
+      const ethnicity = $("#ethnicity").val();
+      const diseaseType = $("#diseaseType").val();
+      const symptoms = $("#symptoms").val();
+      const hospitalized = $("#hospitalized").val();
+      const deceased = $("#deceased").val();
+      const treatmentType = $("#treatmentType").val();
+      const vaccinationStatus = $("#vaccinationStatus").val();
+
+      if(!patientAddress || !gender || !age || !ethnicity||! diseaseType || !symptoms || !hospitalized || !deceased || !treatmentType || !vaccinationStatus) {
+          alert("Please fill all fields!");
+          return;
+      }
+
+      // // Combine data and convert it to a JSON string
+      // const data = JSON.stringify({
+      //     condition: condition,
+      //     prescription: prescription
+      // });
+
+      const previousFileHash = await getPatientIPFSHash(patientAddress);
+      
+      let previousData = [];
+      console.log("previousFileHash:"+previousFileHash);
+      if (previousFileHash) {
+        try {
+            const ipfs = window.IpfsApi('localhost', '5001');
+            const previousDataResult = await ipfs.files.cat(previousFileHash);
+            console.log("previousData:"+previousDataResult);
+            previousData = JSON.parse(previousDataResult.toString());
+        } catch (err) {
+            console.error("Error fetching previous data from IPFS:", err);
+        }
+      }
+      const newData = {
+        gender: gender,
+        age: age,
+        ethnicity: ethnicity,
+        diseaseType: diseaseType,
+        symptoms: symptoms,
+        hospitalized: hospitalized,
+        deceased: deceased,
+        treatmentType: treatmentType,
+        vaccinationStatus: vaccinationStatus,
+        addByDocter: docterName
+        };
+     const combinedData = [
+        ...previousData,
+        newData
+      ];
+      // Save the combined data to IPFS and get the hash
+      const dataToSave = JSON.stringify(combinedData);
+      console.log("dataToSave:", dataToSave);
+      const ipfs = window.IpfsApi('localhost', '5001');
+      const Buffer = window.IpfsApi().Buffer;
+      const ipfsBuffer = Buffer(dataToSave);
+      let ipfsHash;
+
+      try {
+          const ipfsResult = await ipfs.files.add(ipfsBuffer);
+          ipfsHash = ipfsResult[0].hash;
+      } catch (err) {
+          console.error("Error saving combined data to IPFS:", err);
+      }
+
+      // Call the smart contract function to save the hash
+      if (ipfsHash) {
+          try {
+              await infecDisInfoContract.methods.recordUpload(patientAddress, ipfsHash).send({ from: rawPublicKey });
+              // Show success message or do any other necessary actions after successful transaction
+              $(".alert-success").show();
+          } catch (err) {
+              console.error("Error saving to blockchain:", err);
+          }
+      }
+  }
+
+  async function getPatientIPFSHash(patientAddress) {
+        const patientInfo = await infecDisInfoContract.methods.getPatientInfo(patientAddress).call();
+        console.log("patientInfo:"+patientInfo[2]);
+        return patientInfo[2];
+  }
+  
+    function logout() {
+    // Redirect the user to the logout page (Replace "logout.html" with your actual logout page)
+    window.location.href = "index.html";
+    }
+    async function deleteAccount() {
+      try {
+        // Use web3 to call the smart contract function to delete records
+        await infecDisInfoContract.methods.removeSelf().send({from: rawPublicKey});
+        // Reload the list of healthcare providers with access
+        //loadProfileData();
+        $(".alert-primary").text("Delete account successfully").show();
+        logout();
+      } catch (error) {
+        console.error(error);
+        //打印错误信息
+        $(".alert-primary").text("Delete account failed").show();
+      }
+    }
+    async function createPatientAccount() {
+            try {
+                const newAccount = await web3.eth.accounts.create();
+                console.log('New account address:', newAccount);
+                const amountInWei = web3.utils.toWei('0.0005', 'ether');
+                const txHash = await ethereum.request({
+                  method: 'eth_sendTransaction',
+                  params: [{
+                      from: ethereum.selectedAddress,
+                      to: newAccount.address,
+                      value: amountInWei,
+                  }],
+              });
+              
+              const qrCodeData = `
+                  Address: ${newAccount.address}
+                  Private Key: ${newAccount.privateKey}
+                  
+                  To import this account into MetaMask:
+                  1. Open MetaMask
+                  2. Click on your profile icon
+                  3. Choose "Import Account"
+                  4. Paste the private key above and complete the import process
+                  
+                  Register as a patient using this account private key.
+              `;
+              openQRCodePopup(qrCodeData);
+            } catch (error) {
+                console.error('Error creating account:', error);
+            }
+        }
+        function openQRCodePopup(qrCodeData) {
+          // 打开弹出窗口
+          const popup = window.open('', 'QRCodeWindow', 'width=500,height=600');
+          // 生成二维码
+          const popupStyles = `
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                background-color: #f4f4f4;
+                font-family: Arial, sans-serif;
+            }
+            button {
+                margin-top: 20px;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                background-color: #333;
+                color: #fff;
+                cursor: pointer;
+                transition: background-color 0.2s;
+            }
+            button:hover {
+                background-color: #555;
+            }
+        `;
+          const styleEl = popup.document.createElement('style');
+          styleEl.textContent = popupStyles;
+          popup.document.head.appendChild(styleEl);
+
+          // 生成二维码
+          const qrcode = new QRCode(popup.document.body, {
+              text: qrCodeData,
+              width: 256,
+              height: 256 
+          });
+
+          // 加一个关闭按钮
+          const closeBtn = popup.document.createElement('button');
+          closeBtn.textContent = 'Close';
+          closeBtn.onclick = () => popup.close();
+          popup.document.body.appendChild(closeBtn);
+        }
+</script>
+</body>
+</html>

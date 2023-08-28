@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>InfectiousDataSystem</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/img/cardiogram.ico" />
+        <!-- Bootstrap Icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- SimpleLightbox plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/Bootstrap.css" rel="stylesheet" />
+        
+        <style>
+            #mainNav {
+            background-color: #1c1c1c;
+            }
+
+            /* 导航链接文字颜色 */
+            #mainNav .nav-link {
+            color: #fff !important;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 1rem;
+            transition: all 0.3s ease;
+            }
+
+            /* 鼠标悬浮链接文字颜色 */
+            #mainNav .nav-link:hover {
+            color: #f4623a !important;
+            background-color: #333;
+            }
+
+            /* 导航栏品牌文字颜色 */
+            #mainNav .navbar-brand {
+            color: #fff !important;
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            }
+
+            /* 鼠标悬浮品牌文字颜色 */
+            #mainNav .navbar-brand:hover {
+            color: #f4623a !important;
+            }
+
+            /* Active class 文字颜色 */
+            #mainNav .nav-link.active {
+            color: #f4623a !important;
+            }
+
+            /* 缩小后的导航栏样式 */
+            #mainNav.navbar-shrink {
+            background-color: #333;
+            transition: all 0.3s ease;
+            }
+
+            #mainNav.navbar-shrink .nav-link {
+            color: #fff !important;
+            }
+
+            #mainNav.navbar-shrink .navbar-brand {
+            color: #fff !important;
+            }
+
+            #mainNav.navbar-shrink .nav-link.active {
+            color: #f4623a !important;
+            }
+
+            /* 按钮样式 */
+            .navbar-toggler {
+            border-color: #fff;
+            }
+
+            .navbar-toggler-icon {
+            background-color: #fff;
+            }
+
+            /* 重置下拉菜单样式 */
+            .navbar-nav .dropdown-menu {
+            background-color: #1c1c1c;
+            border-color: #f4623a;
+            }
+
+            .navbar-nav .dropdown-item {
+            color: #fff !important;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            }
+
+            .navbar-nav .dropdown-item:hover {
+            color: #f4623a !important;
+            background-color: #333;
+            }
+
+            header.masthead {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+            background: url("../pic/main.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-size: cover;
+            }
+            header.masthead h1, header.masthead .h1 {
+            color: #000;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            padding: 0.5rem 1rem;
+            }
+            @media (min-width: 992px) {
+            header.masthead {
+                height: 100vh;
+                min-height: 40rem;
+                padding-top: 4.5rem;
+                padding-bottom: 0;
+            }
+            header.masthead p {
+                color: #000;
+                font-size: 1.5rem;
+                font-weight: 300;
+                margin-bottom: 4rem;
+            }
+            
+            }
+            @media (min-width: 2000px) {
+            header.masthead h1, header.masthead .h1 {
+                font-size: 4.5rem;
+            }
+            }
+        
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#page-top">InfectiousDataSystem</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="./index.html">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./register.html">Register</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Others
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">About</a></li>
+                                <li><a class="dropdown-item" href="./registerForDocAndInsti.html">Institution Role Register</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container h-100">
+              <div class="row h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-8">
+                  <!-- <h1 class="font-weight-bold">Welcome to Infectious Data System</h1>                  -->
+                  <div class="mb-5">
+                    <button class="btn-lg" onclick="web3ConnectionCheck()">Check Web3 Connection</button>
+                    <button class="btn-lg" onclick="signIn()">Sign In</button>
+                    <div class="alert alert-success mt-2" style="display: none;">
+                        Web3 connected, please register or login.
+                      </div>
+                    <div class="alert alert-primary mt-2" style="display: none;">
+                      Not registered yet, please register first.
+                    </div>       
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+        <script src="app.js"></script>
+    <script>
+    
+    function web3ConnectionCheck() {
+        if (typeof web3 !== 'undefined') {
+            console.log('Web3 Detected! ' + web3.currentProvider.constructor.name)
+            window.web3 = new Web3(web3.currentProvider);
+            web3.eth.getAccounts().then(console.log);
+            $(".alert-success").show();
+        } else {
+            console.log('No Web3 Detected... using HTTP Provider');
+            $(".alert-success").text('No Web3 Detected.').show();
+    }   
+}
+    
+    async function signIn(){
+        window.web3 = new Web3(web3.currentProvider);
+        $(".alert-warning").hide();
+        console.log("signIn start");
+
+        // 获取当前选择的地址
+        let rawPublicKey = web3.currentProvider.selectedAddress;
+        
+        // 使用 toChecksumAddress 转换地址到校验和格式
+        let publicKey = web3.utils.toChecksumAddress(rawPublicKey);
+        
+        //console.log(publicKey);
+
+        const result = await infecDisInfoContract.methods.contractTestGetNumber().call();
+        console.log("test2:" + result);
+
+        try {
+            const patientList = await infecDisInfoContract.methods.getPatientList().call();
+            //console.log("patientList:" + patientList);
+
+            const docterList = await infecDisInfoContract.methods.getDocterList().call();
+            //console.log("docterList:" + docterList);
+
+            const institutionList = await infecDisInfoContract.methods.getInstitutionList().call();
+            //console.log("institutionList:" + institutionList);
+
+            const adminList = await infecDisInfoContract.methods.getAdmins().call();
+
+            // 转换存储在列表中的地址到它们的校验和格式
+            const checksummedPatientList = patientList.map(addr => web3.utils.toChecksumAddress(addr));
+            const checksummedDocterList = docterList.map(addr => web3.utils.toChecksumAddress(addr));
+            const checksummedInstitutionList = institutionList.map(addr => web3.utils.toChecksumAddress(addr));
+            const checksummedAdminList = adminList.map(addr => web3.utils.toChecksumAddress(addr)); 
+ 
+
+            if (checksummedPatientList.includes(publicKey)) {
+                location.href = "./patient.html";
+                return;
+            }
+            else if (checksummedDocterList.includes(publicKey)) {
+                location.href = "./docter.html";
+            } 
+            else if (checksummedInstitutionList.includes(publicKey)) {
+                location.href = "./institution.html";
+            }
+            else if (checksummedAdminList.includes(publicKey)) {
+                location.href = "./admin.html";
+            } 
+            else {
+                console.log("Invalid User!");
+                $(".alert-primary").show();
+            }
+            } catch (error) {
+            console.error(error);
+            console.log("Not registered");
+            $(".alert-primary").show();
+        }
+        }
+        function test(){
+            console.log(infecDisInfoContract.contractTestGetNumber().call());
+        }
+        
+    </script>
+       
+</html>

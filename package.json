@@ -1,0 +1,22 @@
+{
+  "name": "ep1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/test-helpers": "^0.5.16",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "ipfs": "^0.66.1",
+    "ipfs-api": "^26.1.2",
+    "lite-server": "^2.6.1",
+    "qrcode": "^1.5.3",
+    "web3": "^4.0.3"
+  }
+}

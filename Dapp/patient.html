@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Patient Page</title>
+  
+  <!-- Imports Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- Imports the CSS styles -->
+  <style>
+    .list-group-item:hover {
+          background-color: rgba(0, 123, 255, 0.1);
+      }
+
+      /* Additional spacing below navbar */
+      body {
+          padding-top: 70px;
+      }
+      .small-image {
+    max-width: 120px;
+    max-height: 120px;
+    }
+  </style>
+</head>
+
+<body data-spy="scroll" data-target=".list-group">
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <a class="navbar-brand" href="#">Patient Portal</a>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- Sidebar -->
+      <div class="col-md-3">
+        <div class="list-group mt-3">
+            <a href="#profileSection" class="list-group-item list-group-item-action">My Profile</a>
+            <a href="#grantAccessSection" class="list-group-item list-group-item-action">Grant Access</a>
+            <a href="#sharedWithSection" class="list-group-item list-group-item-action">Shared With</a>
+            <a href="#recordsSection" class="list-group-item list-group-item-action">Records</a>
+            <a href="#" class="list-group-item list-group-item-action" onclick="logout()">Logout</a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <main class="col-md-9 ml-sm-auto px-4">
+
+        <!-- Page Heading -->
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom" id="profileSection">
+          <h1 class="h2">My Profile</h1>
+        </div>
+        
+        <!-- Profile Info -->
+        <div class="my-3 p-3 bg-white rounded shadow-sm" >
+          <h6 class="border-bottom border-gray pb-2 mb-0">Patient Profile Information</h6>
+          
+          <div class="media pt-3">
+            <img src="../pic/head.jpg" class="mr-3 rounded-circle small-image">
+            <div class="media-body">
+              <h5 class="mt-0" id="name">John Doe</h5>
+              <p class="text-muted mb-0" id="contactNumber">133</p>
+            </div>
+          </div>
+
+          <div class="media pt-3">
+            <div class="media-body">
+              <h5 class="mt-0 mb-1">Medical Records Hash:</h5>
+              <p class="text-muted mb-0" id="recordsFileHash">0x123abc...</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Grant Access -->
+        <div class="my-3 p-3 bg-white rounded shadow-sm" id="grantAccessSection">
+          <h6 class="border-bottom border-gray pb-2 mb-0">Grant Access</h6>
+
+          <div class="media pt-3">
+            <div class="media-body">
+              <select class="form-control" id="permitDocterList">
+                <option>Select Docter</option>
+              </select>
+
+              <button class="btn btn-primary mt-3" onclick="grantAccess()">Grant Access</button> <div class="alert alert-success mt-2" style="display: none;">
+                Please select first.
+              </div> 
+            </div>
+          </div>
+        </div>
+
+        <!-- Shared With -->
+        <div class="my-3 p-3 bg-white rounded shadow-sm" id="sharedWithSection">
+          <h6 class="border-bottom border-gray pb-2 mb-0">Shared With</h6>
+          
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Contact Number</th>
+                <th>Address</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="accessDoc">
+              <tr>
+                <!-- <td>Dr. Amy</td>
+                <td class="docterPublicKey">0xabc123...</td>
+                <td><button class="btn btn-danger">Revoke Access</button></td> -->
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <!-- Records -->
+        <div class="my-3 p-3 bg-white rounded shadow-sm" id="recordsSection">
+          <h6 class="border-bottom border-gray pb-2 mb-0">Records</h6>
+
+          <button class="btn btn-info" onclick="showRecords(this)">View Records</button>
+          <button class="btn btn-secondary" onclick="deleteRecords()">Delete Records</button>
+
+          <div id="records"></div>
+          <div class="alert alert-primary mt-2" style="display: none;"></div>
+        </div>
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+          <button class="btn btn-danger" onclick="deleteAccount()">Delete Account</button>
+        </div>
+        <div class="my-3 p-3 bg-white rounded shadow-sm">     
+            <button class="btn btn-danger" onclick="logout()">Logout</button>
+          </div>
+        
+      </main>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.x/dist/web3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="app.js"></script>
+    <script>
+    // Global variables
+    let showRecordsButton = 0;
+    var recordsFileHash;
+    function web3ConnectPromise() {
+    return new Promise((resolve, reject) => {
+        // Connect to the Ethereum blockchain using web3
+        // Replace the following code with your actual web3 connection logic
+
+        // Assuming web3 is a global object, if not, you need to import web3 library first.
+        if (typeof web3 !== "undefined") {
+        web3 = new Web3(web3.currentProvider);
+        resolve(); // Connection successful, resolve the promise
+        window.ethereum.enable();
+        
+        } else {
+        reject(new Error("Web3 not available")); // Connection failed, reject the promise
+        }
+    });
+    }
+
+
+    web3ConnectPromise().then(function() {
+        // Call the functions to load data and update the HTML page
+        setTimeout(async function() {
+        rawPublicKey = web3.currentProvider.selectedAddress;
+        console.log(rawPublicKey);
+
+        await loadProfileData();
+        await loadDocterList();
+        await loadSharedWithList();
+    }, 500);
+    });
+
+    async function getSecretKey() {
+      const secretKey = await infecDisInfoContract.methods.retrieveKey(rawPublicKey, rawPublicKey).call();
+      console.log("secretKey:" + secretKey);
+      return secretKey;
+    }
+    async function loadProfileData() {
+        // Use web3 to call smart contract functions and get the data
+        const patientInfo = await infecDisInfoContract.methods.getPatientInfo(rawPublicKey).call();
+        const encryptName = patientInfo[0];
+        const contactNumber = patientInfo[1];
+        recordsFileHash = patientInfo[2];
+        const secretKey = await getSecretKey();
+        const name = decryptData(encryptName, secretKey);
+        console.log("name:" + name);
+        // Update the corresponding HTML elements with the retrieved data
+        $("#name").html(name);
+        $("#contactNumber").html(contactNumber);
+        $("#recordsFileHash").html(recordsFileHash);
+    }
+
+    async function loadDocterList() {
+      // Use web3 to call smart contract functions and get the list of healthcare providers
+      const docterList = await infecDisInfoContract.methods.getDocterList().call();
+
+      // Update the select element with the healthcare providers
+      const permitDocterList = $("#permitDocterList");
+      permitDocterList.empty(); // Clear the existing options
+      permitDocterList.append($("<option>").text("Select Docter")); // Add default option
+
+        docterList.forEach(async function(docterAddress) {
+        const ethDocterInfo = await infecDisInfoContract.methods.getDocterInfo(docterAddress).call();
+        const name = ethDocterInfo[0];
+        const address = docterAddress;
+
+        permitDocterList.append($("<option>").text(name + " : " + address));
+      });
+    }
+
+    async function loadSharedWithList() {
+        // Use web3 to call smart contract functions and get the list of healthcare providers with access
+        const docAccessListAddr = await infecDisInfoContract.methods.patientAccessPermitCheck(rawPublicKey).call();
+
+        // Update the table with the healthcare providers who have access
+        const accessDocTable = $("#accessDoc");
+        accessDocTable.empty(); // Clear the existing table rows
+
+        docAccessListAddr.forEach(async function(docterAddress) {
+            const docterInfo = await infecDisInfoContract.methods.getDocterInfo(docterAddress).call();
+            const name = docterInfo[0];
+            const contactNumber = docterInfo[1];
+
+            // Create a new row and add it to the table
+            const newRow = $("<tr>");
+            newRow.data('doctorAddress', docterAddress);
+
+            newRow.append($("<td>").text(name));
+            newRow.append($("<td>").text(contactNumber));
+            newRow.append($("<td>").text(docterAddress));
+            newRow.append($("<td>").html('<button class="btn btn-danger" onclick="revokeAccess(this)">Revoke Access</button>'));
+            accessDocTable.append(newRow);
+        });
+    }
+
+    async function grantAccess() {
+      // Get the selected healthcare provider's address
+        const toPermitDocterAddress = $("#permitDocterList").val().split(" : ")[1];
+
+        if (!toPermitDocterAddress ||toPermitDocterAddress === "Select Docter/Institution") {
+            $(".alert-success").show();
+            return; // Abort the access granting process
+        }
+
+        // Check if the selected doctor already has access
+        const accessDocList  = await infecDisInfoContract.methods.patientAccessPermitCheck(rawPublicKey).call();
+
+        const hasAccess = accessDocList.includes(toPermitDocterAddress);
+        if (hasAccess) {
+        $(".alert-success").text("This docter has already got access, please try again").show();
+        return; // Abort the access granting process
+        }
+            
+        // Use web3 to call the smart contract function to grant access
+        await infecDisInfoContract.methods.accessPermitGrant(toPermitDocterAddress).send({from: rawPublicKey});
+
+        // Reload the list of healthcare providers with access
+        await loadSharedWithList();
+    }
+    async function revokeAccess(button) {
+        // Get the address of the healthcare provider to revoke access
+        // const toRevokeDoctorAddress = $(button).closest("tr").find(".docterPublicKey").text().trim();
+        const toRevokeDoctorAddress = $(button).closest('tr').data('doctorAddress');
+
+        console.log("revokeAddress:" + toRevokeDoctorAddress);
+
+        // Use web3 to call the smart contract function to revoke access
+        await infecDisInfoContract.methods.accessPermitRevokeForPatient(toRevokeDoctorAddress).send({from: rawPublicKey});
+
+        // Reload the list of healthcare providers with access
+        await loadSharedWithList();
+    }
+    async function showRecords(element) {
+        if (showRecordsButton % 2 === 0) {
+            try {
+            // 使用 await 获取记录数据，确保数据获取成功后再进行显示
+            const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+            const response = await fetch("http://localhost:8080/ipfs/" + recordsFileHash);
+            //console.log("recordsFileHash:" + recordsFileHash);
+            const headers = ["gender", "age", "ethnicity", "diseaseType", "symptoms", "hospitalized", "deceased", "treatmentType", "vaccinationStatus", "addByDocter"];
+            if (!response.ok) {
+                throw new Error("Failed to fetch medical records");
+            }
+            const recordData = await response.text();
+            //console.log(recordData);
+            const records = JSON.parse(recordData);
+            let tableHTML = "<table class='table table-bordered'>";
+            tableHTML += "<thead><tr>";
+            headers.forEach(header => {
+              tableHTML += `<th>${header}</th>`;
+            });
+            tableHTML += "</tr>";
+            records.forEach(record => {
+              tableHTML += "<tr>";
+              headers.forEach(header => {
+                tableHTML += `<td>${record[header]}</td>`;
+              });
+              tableHTML += "</tr>";
+            });
+
+            tableHTML += "</table>";
+
+            // 显示表格
+            $("#records").html(tableHTML).show();;
+            // // 将获取的记录数据显示在页面上
+            // $("#records").html(recordData);
+            // $("#records").show();
+
+            // 切换按钮文本和样式
+            element.innerHTML = "Hide Records";
+            element.className = "btn btn-info";
+
+            showRecordsButton += 1;
+            } catch (error) {
+            console.error(error);
+            //打印错误信息
+            $(".alert-primary").text("There is no records").show();
+            }
+        } else {
+            // 隐藏记录
+            $("#records").hide();
+
+            // 切换按钮文本和样式
+            element.innerHTML = "View Records";
+            element.className = "btn btn-info";
+
+            showRecordsButton -= 1;
+        }
+    }
+    async function deleteRecords() {
+      try {
+        // Use web3 to call the smart contract function to delete records
+        await infecDisInfoContract.methods.deleteInfoRecords().send({from: rawPublicKey});
+        // Reload the list of healthcare providers with access
+        loadProfileData();
+        $(".alert-primary").text("Delete records successfully").show();
+      } catch (error) {
+        console.error(error);
+        //打印错误信息
+        $(".alert-primary").text("Delete records failed").show();
+      }
+    }
+    function decryptData(ciphertext, secretKey) {
+        const bytes = CryptoJS.AES.decrypt(ciphertext, secretKey);
+        console.log("bytes:" + bytes);
+        return bytes.toString(CryptoJS.enc.Utf8);
+    }
+    function logout() {
+    // Redirect the user to the logout page (Replace "logout.html" with your actual logout page)
+    window.location.href = "index.html";
+    }
+    async function deleteAccount() {
+      try {
+        // Use web3 to call the smart contract function to delete records
+        await infecDisInfoContract.methods.removeSelf().send({from: rawPublicKey});
+        // Reload the list of healthcare providers with access
+        //loadProfileData();
+        $(".alert-primary").text("Delete account successfully").show();
+        logout();
+      } catch (error) {
+        console.error(error);
+        //打印错误信息
+        $(".alert-primary").text("Delete account failed").show();
+      }
+    }
+
+</script>
+</body>
+</html>
