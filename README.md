@@ -11,7 +11,7 @@ description
 
 # To run the code, first install the following dependencies
 - Truffle - solc: "0.5.16"
-- Node
+- Nodejs
 - Metamask as Browser extension.
 - Ganache-cli or Ganache-GUI for deployement of Contracts.
 
