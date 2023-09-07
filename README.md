@@ -10,15 +10,14 @@ description
 - truffle-config.js: This is Truffle's configuration file, which contains information on how to connect to our test Ethereum networks.
 
 # To run the code, first install the following dependencies
-Truffle
--solc: "0.5.16"
-Node
-Metamask as Browser extension.
-Ganache-cli or Ganache-GUI for deployement of Contracts.
+- Truffle - solc: "0.5.16"
+- Node
+- Metamask as Browser extension.
+- Ganache-cli or Ganache-GUI for deployement of Contracts.
 
 # Set Up
-1.Please install the relevant dependency libraries according to the JSON file in the code.
-2.Open a test ethereum blockchain with ganache, port use 7545.
-3.Use the browser plugin metamask to connect to your account in the blockchain.
-4.Deploy the smart contract to the blockchain using truffle migrate and paste the new contract address into the first line of app.js.
-5.Start the littler server, you can access the Dapp page now, and you can use the test button to check whether the blockchain and Dapp are connected or not.
+1. Please install the relevant dependency libraries according to the JSON file in the code.
+2. Open a test ethereum blockchain with ganache, port use 7545.
+3. Use the browser plugin metamask to connect to your account in the blockchain.
+4. Deploy the smart contract to the blockchain using truffle migrate and paste the new contract address into the first line of app.js.
+5. Start the littler server, you can access the Dapp page now, and you can use the test button to check whether the blockchain and Dapp are connected or not.
